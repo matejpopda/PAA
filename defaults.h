@@ -13,7 +13,7 @@ const int CONTROLS_SIZE_Y = 450;
 
 using TypePrecision = float;
 
-const int NUMBER_OF_THREADS_FOR_MULTITHREADING = 16;
+const int NUMBER_OF_THREADS_FOR_MULTITHREADING = 128;
 
 
 // Aliases

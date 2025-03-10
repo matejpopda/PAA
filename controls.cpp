@@ -15,9 +15,10 @@ const wxString mandelbrot = "Mandelbrot";
 const wxString julia = "Julia";
 const wxString singlethread = "SingleThread";
 const wxString multithread = "MultiThread";
+const wxString ompthread = "OMP MultiThread";
 const wxString cuda = "CUDA";
 
-static const wxString typesCompute[] = { singlethread , multithread,  cuda };
+static const wxString typesCompute[] = { singlethread , multithread, ompthread,  cuda };
 static const wxString typesFractal[] = { mandelbrot,  julia };
 
 
@@ -185,11 +186,15 @@ void ControlsFrame::OncomboTypeOfComputeEnter(wxCommandEvent& event) {
         Settings.computation_type = MULTIPLE_THREADS;
     }
 
+    else if (selected == OPM_THREADS) {
+        Settings.computation_type = OPM_THREADS;
+    }
+
     else if (selected == CUDA) {
         Settings.computation_type = CUDA;
     }
-    SetStatusText(std::to_string(selected) + std::to_string(Settings.computation_type));
 
+ 
 
 
     Settings.redraw_on_next_input_poll = true;

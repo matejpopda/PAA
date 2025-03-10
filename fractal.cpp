@@ -136,3 +136,28 @@ void calcurate_fractal_multithread(Color* result) {
 
 }
 
+
+
+void calcurate_fractal_openMP(Color* result) {
+
+	SettingsSingleton settings = SettingsSingleton::getInstance();
+
+	Bounds bounds = settings.getBounds();
+	
+	#pragma omp parallel for num_threads(NUMBER_OF_THREADS_FOR_MULTITHREADING)
+	for (int i = 0; i < CANVAS_SIZE_X; i++) {
+		for (int j = 0; j < CANVAS_SIZE_Y; j++) {
+
+			TypePrecision x, y;
+			x = bounds.left_x + (i / static_cast<TypePrecision>(CANVAS_SIZE_X)) * (bounds.right_x - bounds.left_x);
+			y = bounds.bottom_y + (j / static_cast<TypePrecision>(CANVAS_SIZE_Y)) * (bounds.top_y - bounds.bottom_y);
+
+			Complex point = Complex{ x,y };
+
+			result[i + CANVAS_SIZE_X * j] = calculate_point(point);
+
+
+		}
+	}
+
+}

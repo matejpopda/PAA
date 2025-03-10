@@ -42,7 +42,9 @@ void CanvasFrame::Redraw() {
     else if (settings.computation_type == CUDA) {
         calcurate_fractal_cuda(fractal);
     }
-    
+    else if (settings.computation_type == OPM_THREADS) {
+        calcurate_fractal_openMP(fractal);
+    }
     
     wxNativePixelData data = wxNativePixelData(bitmap);
     wxNativePixelData::Iterator p(data);
